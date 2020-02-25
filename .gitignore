@@ -230,3 +230,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /.nuget
+/.vs/MarkDownEditor/v16
+/.vs/MarkDownEditor/DesignTimeBuild

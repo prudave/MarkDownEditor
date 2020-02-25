@@ -14,7 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlToPdfWrapper", "WkHtm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlToImageWrapper", "WkHtmlToImageWrapper\WkHtmlToImageWrapper.csproj", "{D01A2A12-54DD-4B88-A46A-926B4D0154DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkDownEditor.Test", "MarkDownEditor.Test\MarkDownEditor.Test.csproj", "{144486DD-E226-4953-91F6-8447B5C08F90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkDownEditor.Test", "MarkDownEditor.Test\MarkDownEditor.Test.csproj", "{144486DD-E226-4953-91F6-8447B5C08F90}"
+	ProjectSection(ProjectDependencies) = postProject
+		{48932BB7-3CC3-4897-A466-BE91A9FA1E40} = {48932BB7-3CC3-4897-A466-BE91A9FA1E40}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
