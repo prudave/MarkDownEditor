@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using System;
 
-namespace MarkDownEditor.Test.Converters
+namespace MarkDownEditor.Test
 {
     public class OppositeConverterTest
     {

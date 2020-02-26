@@ -234,3 +234,6 @@ $RECYCLE.BIN/
 /.nuget
 /.vs/MarkDownEditor/v16
 /.vs/MarkDownEditor/DesignTimeBuild
+
+# Test resources
+/MarkDownEditor.Test/Resources/output/
