@@ -24,7 +24,7 @@ namespace MarkDownEditor.Test
         }
 
         [Fact]
-        public void Test1()
+        public void DetectAscii1()
         {
             encoding.Reset();
 
@@ -35,7 +35,7 @@ namespace MarkDownEditor.Test
             }
         }
         [Fact]
-        public void Test2()
+        public void DetectEmpty()
         {
             encoding.Reset();
 
@@ -45,19 +45,9 @@ namespace MarkDownEditor.Test
                 Assert.Null(name);
             }
         }
-        [Fact]
-        public void Test3()
-        {
-            encoding.Reset();
 
-            using (var fileStream = new FileStream(emptyPath, FileMode.Open, FileAccess.Read))
-            {
-                string name = encoding.Detect(fileStream);
-                Assert.Null(name);
-            }
-        }
         [Fact]
-        public void Test4()
+        public void DetectNoBuffer()
         {
             encoding.Reset();
             using (var fileStream = new FileStream(emptyPath, FileMode.Open, FileAccess.Read))
@@ -66,7 +56,7 @@ namespace MarkDownEditor.Test
             }
         }
         [Fact]
-        public void Test5()
+        public void DetectHugeBufferSmallMaxsize()
         {
             encoding.Reset();
             using (var fileStream = new FileStream(asciiPath, FileMode.Open, FileAccess.Read))
@@ -76,7 +66,7 @@ namespace MarkDownEditor.Test
             }
         }
         [Fact]
-        public void Test6()
+        public void DetectNullMaxSize()
         {
             encoding.Reset();
             using (var fileStream = new FileStream(asciiPath, FileMode.Open, FileAccess.Read))
@@ -86,22 +76,19 @@ namespace MarkDownEditor.Test
             }
         }
         [Fact]
-        public void Test7()
+        public void DetectAscii2()
         {
             encoding.Reset();
             using (var fileStream = new FileStream(asciiPath, FileMode.Open, FileAccess.Read))
             {
-                
+
                 string name = encoding.Detect(fileStream, -1, 1024);
                 Assert.Equal("ASCII", name);
                 Assert.True(encoding.IsText);
             }
         }
-
-       
-
         [Fact]
-        public void Test10()
+        public void DetectDoneBefore()
         {          
             encoding.Reset();
             
@@ -113,15 +100,9 @@ namespace MarkDownEditor.Test
 
             Assert.Null(name);
         }
-
         [Fact]
-        public void Test11()
+        public void DetectBinaryFile()
         {
-            //encoding.Reset();
-            //byte[] file = File.ReadAllBytes(binaryPath);
-            //string name = encoding.Detect(file, 0, file.Length);
-            //Assert.False(encoding.IsText);
-
             encoding.Reset();
             using (var fileStream = new FileStream(binaryPath, FileMode.Open, FileAccess.Read))
             {
@@ -130,11 +111,9 @@ namespace MarkDownEditor.Test
                 Assert.False(encoding.IsText);
                 Assert.True(encoding.Done);
             }
-
-
         }
         [Fact]
-        public void Test12()
+        public void DetectLongUTF8()
         {
             encoding.Reset();
             byte[] file = File.ReadAllBytes(utf8Path);
@@ -149,18 +128,17 @@ namespace MarkDownEditor.Test
             Assert.Equal("UTF-8", name);
         }
         [Fact]
-        public void Test13()
+        public void DetectSpecificBufferSize1()
         {
             encoding.Reset();
             byte[] file = File.ReadAllBytes(asciiPath);
-            
-            
+                
             string name = encoding.Detect(file, 0, 6*1024);
             
             Assert.Equal("ASCII", name);
         }
         [Fact]
-        public void Test14()
+        public void DetectSpecificBufferSize2()
         {
             encoding.Reset();
             byte[] file = File.ReadAllBytes(asciiPath);
@@ -171,7 +149,7 @@ namespace MarkDownEditor.Test
             Assert.Equal("ASCII", name);
         }
         [Fact]
-        public void Test15()
+        public void DetectDifferentEncodingFíle()
         {
             encoding.Reset();
             byte[] file1 = File.ReadAllBytes(asciiPath);
@@ -183,10 +161,9 @@ namespace MarkDownEditor.Test
             System.Buffer.BlockCopy(file2, 0, rv, 1024, 1024);
             System.Buffer.BlockCopy(file3, 0, rv, 1024 + 1024, 1024);
 
-
             string name = encoding.Detect(rv, 0, 1024*3);
 
-            Assert.Equal("ASCII", name);
+            Assert.Null(name);
         }
     }
 }
