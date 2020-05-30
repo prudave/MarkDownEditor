@@ -8,37 +8,13 @@ using System.Text;
 using Xunit;
 using static MarkDownEditor.ViewModel.MainViewModel;
 
-namespace MarkDownEditor.Test
+namespace MarkDownEditor.Test.ExportTests
 {
-    public class DocumentExporterTest : IDisposable
+    public class GithubMarkdownExportTest
     {
         private const string resourcesPath = "..\\..\\..\\Resources\\";
-
-        //SettingsViewModel Settings = new SettingsViewModel();
-        public DocumentExporterTest()
-        {
-            
-
-        }
-
-        public void Dispose()
-        {
-            //throw new NotImplementedException();
-        }
-
-
-        [Fact]
-        public void CanExportTest1()
-        {
-            Assert.True(DocumentExporter.CanExport("Plain Html"));
-            Assert.False(DocumentExporter.CanExport("Bad type"));
-        }
-        [Fact]
-        public void CanExportTest2()
-        {
-            Assert.False(DocumentExporter.CanExport(null));
-        }
-
+        protected string mdType = "GitHub Flavored Markdown";
+        protected string pathChange = "markdown_github";
 
 
         [Fact]
@@ -47,14 +23,14 @@ namespace MarkDownEditor.Test
             string exportType = "Plain Html";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\plan.html";
-            string refOutputPath = resourcesPath + "reference\\plain.html";
+            string outputPath = resourcesPath + pathChange + "\\output\\plain.html";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\plain.html";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
-            DocumentExporter.Export(exportType, 
-                MarkDownType["Markdown"], 
-                null, 
+            DocumentExporter.Export(exportType,
+                MarkDownType[mdType],
+                null,
                 inputPath,
                 outputPath);
 
@@ -67,8 +43,8 @@ namespace MarkDownEditor.Test
             string exportType = "Html";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\css_math.html";
-            string refOutputPath = resourcesPath + "reference\\css_math.html";
+            string outputPath = resourcesPath + pathChange + "\\output\\css_math.html";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\css_math.html";
 
             string cssPath = resourcesPath + "Default.css";
 
@@ -77,7 +53,7 @@ namespace MarkDownEditor.Test
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -90,15 +66,15 @@ namespace MarkDownEditor.Test
             string exportType = "Html";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\math.html";
-            string refOutputPath = resourcesPath + "reference\\math.html";
+            string outputPath = resourcesPath + pathChange + "\\output\\math.html";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\math.html";
 
             string cssPath = null;
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -112,15 +88,15 @@ namespace MarkDownEditor.Test
             string exportType = "PDF";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\css_math.pdf";
-            string refOutputPath = resourcesPath + "reference\\css_math.pdf";
+            string outputPath = resourcesPath + pathChange + "\\output\\css_math.pdf";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\css_math.pdf";
 
             string cssPath = resourcesPath + "Default.css";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -133,15 +109,15 @@ namespace MarkDownEditor.Test
             string exportType = "PDF";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\css.pdf";
-            string refOutputPath = resourcesPath + "reference\\css.pdf";
+            string outputPath = resourcesPath + pathChange + "\\output\\css.pdf";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\css.pdf";
 
             string cssPath = resourcesPath + "Default.css";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -155,15 +131,15 @@ namespace MarkDownEditor.Test
             string exportType = "PDF";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\plain.pdf";
-            string refOutputPath = resourcesPath + "reference\\plain.pdf";
+            string outputPath = resourcesPath + pathChange + "\\output\\plain.pdf";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\plain.pdf";
 
             string cssPath = null;
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -177,15 +153,15 @@ namespace MarkDownEditor.Test
             string exportType = "Image";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\math.jpg";
-            string refOutputPath = resourcesPath + "reference\\math.jpg";
+            string outputPath = resourcesPath + pathChange + "\\output\\math.jpg";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\math.jpg";
 
             string cssPath = null;
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -200,15 +176,15 @@ namespace MarkDownEditor.Test
             string exportType = "Image";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\plain.jpg";
-            string refOutputPath = resourcesPath + "reference\\plain.jpg";
+            string outputPath = resourcesPath + pathChange + "\\output\\plain.jpg";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\plain.jpg";
 
             string cssPath = null;
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -223,15 +199,15 @@ namespace MarkDownEditor.Test
             string exportType = "Image";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\css_math.jpg";
-            string refOutputPath = resourcesPath + "reference\\css_math.jpg";
+            string outputPath = resourcesPath + pathChange + "\\output\\css_math.jpg";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\css_math.jpg";
 
             string cssPath = resourcesPath + "Default.css";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 cssPath,
                 inputPath,
                 outputPath);
@@ -248,13 +224,13 @@ namespace MarkDownEditor.Test
             string exportType = "RTF";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\output.rtf";
-            string refOutputPath = resourcesPath + "reference\\output.rtf";
+            string outputPath = resourcesPath + pathChange + "\\output\\output.rtf";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\output.rtf";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 null,
                 inputPath,
                 outputPath);
@@ -267,13 +243,13 @@ namespace MarkDownEditor.Test
             string exportType = "Docx";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\output.docx";
-            string refOutputPath = resourcesPath + "reference\\output.docx";
+            string outputPath = resourcesPath + pathChange + "\\output\\output.docx";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\output.docx";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 null,
                 inputPath,
                 outputPath);
@@ -287,13 +263,13 @@ namespace MarkDownEditor.Test
             string exportType = "Latex";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\output.tex";
-            string refOutputPath = resourcesPath + "reference\\output.tex";
+            string outputPath = resourcesPath + pathChange + "\\output\\output.tex";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\output.tex";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 null,
                 inputPath,
                 outputPath);
@@ -306,13 +282,13 @@ namespace MarkDownEditor.Test
             string exportType = "Epub";
 
             string inputPath = resourcesPath + "input.md";
-            string outputPath = resourcesPath + "output\\output.epub";
-            string refOutputPath = resourcesPath + "reference\\output.epub";
+            string outputPath = resourcesPath + pathChange + "\\output\\output.epub";
+            string refOutputPath = resourcesPath + pathChange + "\\reference\\output.epub";
 
             Assert.True(DocumentExporter.CanExport(exportType));
 
             DocumentExporter.Export(exportType,
-                MarkDownType["Markdown"],
+                MarkDownType[mdType],
                 null,
                 inputPath,
                 outputPath);

@@ -1,0 +1,473 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+	% 添加xeCJK宏包
+    \usepackage{xeCJK}
+    \setCJKmainfont[BoldFont=SimHei]{SimSun}
+	%\setCJKmonofont{SimSun}% 设置缺省中文字体
+    \setCJKsansfont{STFangsong}
+    \setCJKmonofont{STXihei}
+  \else
+    \usepackage{fontspec}
+  \fi
+  % 注释掉此行，否则会冲突
+  %\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\date{}
+
+\begin{document}
+
+\section{h1 Heading 8-)}\label{h1-heading-8-}
+
+\subsection{h2 Heading}\label{h2-heading}
+
+\subsubsection{h3 Heading}\label{h3-heading}
+
+\paragraph{h4 Heading}\label{h4-heading}
+
+\subparagraph{h5 Heading}\label{h5-heading}
+
+h6 Heading
+
+\subsection{MathJax}\label{mathjax}
+
+\$\textbackslash{}sum\_\{i=0\}\^{}n i\^{}2 =
+\textbackslash{}frac\{(n\^{}2+n)(2n+1)\}\{6\}\$\\
+\$\$\textbackslash{}sum\_\{i=0\}\^{}n i\^{}2 =
+\textbackslash{}frac\{(n\^{}2+n)(2n+1)\}\{6\}\$\$
+
+\subsection{Large paragraphs}\label{large-paragraphs}
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque
+pretium lectus id turpis. Cum sociis natoque penatibus et magnis dis
+parturient montes, nascetur ridiculus mus. Fusce dui leo, imperdiet in,
+aliquam sit amet, feugiat eu, orci. Aliquam erat volutpat. In rutrum.
+Etiam dictum tincidunt diam. Integer pellentesque quam vel velit. Ut
+enim ad minima veniam, quis nostrum exercitationem ullam corporis
+suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Etiam
+bibendum elit eget erat. In enim a arcu imperdiet malesuada. Integer
+lacinia. Duis condimentum augue id magna semper rutrum. In laoreet,
+magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet
+sapien wisi sed libero.
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+inceptos hymenaeos. Fusce dui leo, imperdiet in, aliquam sit amet,
+feugiat eu, orci. Mauris suscipit, ligula sit amet pharetra semper, nibh
+ante cursus purus, vel sagittis velit mauris vel metus. Duis ante orci,
+molestie vitae vehicula venenatis, tincidunt ac pede. Maecenas
+sollicitudin. Nullam faucibus mi quis velit. Integer vulputate sem a
+nibh rutrum consequat. Proin mattis lacinia justo. Suspendisse nisl.
+Aenean placerat. Integer malesuada. Donec quis nibh at felis congue
+commodo. Duis condimentum augue id magna semper rutrum. Duis bibendum,
+lectus ut viverra rhoncus, dolor nunc faucibus libero, eget facilisis
+enim ipsum id lacus.
+
+\subsection{Horizontal Rules}\label{horizontal-rules}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsection{Typographic replacements}\label{typographic-replacements}
+
+Enable typographer option to see result.
+
+(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+
+test.. test\ldots{} test\ldots{}.. test?\ldots{}.. test!\ldots{}.
+
+!!!!!! ???? ,, -- ---
+
+``Smartypants, double quotes'' and `single quotes'
+
+\subsection{Emphasis}\label{emphasis}
+
+\textbf{This is bold text}
+
+\textbf{This is bold text}
+
+\emph{This is italic text}
+
+\emph{This is italic text}
+
+\sout{Strikethrough}
+
+\subsection{Blockquotes}\label{blockquotes}
+
+\begin{quote}
+Blockquotes can also be nested\ldots{}
+
+\begin{quote}
+\ldots{}by using additional greater-than signs right next to each
+other\ldots{}
+
+\begin{quote}
+\ldots{}or with spaces between arrows.
+\end{quote}
+\end{quote}
+\end{quote}
+
+\subsection{Lists}\label{lists}
+
+Unordered
+
+\begin{itemize}
+\tightlist
+\item
+  Create a list by starting a line with \texttt{+}, \texttt{-}, or
+  \texttt{*}
+\item
+  Sub-lists are made by indenting 2 spaces:
+\item
+  Marker character change forces new list start:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ac tristique libero volutpat at
+  \item
+    Facilisis in pretium nisl aliquet
+  \item
+    Nulla volutpat aliquam velit
+  \end{itemize}
+\item
+  Very easy!
+\end{itemize}
+
+Ordered
+
+\begin{enumerate}
+\item
+  Lorem ipsum dolor sit amet
+\item
+  Consectetur adipiscing elit
+\item
+  Integer molestie lorem at massa
+\item
+  You can use sequential numbers\ldots{}
+\item
+  \ldots{}or keep all the numbers as \texttt{1.}
+\end{enumerate}
+
+Start numbering with offset:
+
+\begin{enumerate}
+\tightlist
+\item
+  foo
+\item
+  bar
+\end{enumerate}
+
+\subsection{Code}\label{code}
+
+Inline \texttt{code}
+
+Indented code
+
+\begin{verbatim}
+// Some comments
+line 1 of code
+line 2 of code
+line 3 of code
+\end{verbatim}
+
+Block code ``fences''
+
+\begin{verbatim}
+Sample text here...
+\end{verbatim}
+
+Syntax highlighting
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var} \NormalTok{foo }\OperatorTok{=} \KeywordTok{function} \NormalTok{(bar) }\OperatorTok{\{}
+  \ControlFlowTok{return} \NormalTok{bar}\OperatorTok{++;}
+\OperatorTok{\};}
+
+\VariableTok{console}\NormalTok{.}\AttributeTok{log}\NormalTok{(}\AttributeTok{foo}\NormalTok{(}\DecValTok{5}\NormalTok{))}\OperatorTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Tables}\label{tables}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.09\columnwidth}\raggedright\strut
+Option\strut
+\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+data\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+path to data files to supply the data that will be passed into
+templates.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+engine\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+engine to be used for processing templates. Handlebars is the
+default.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+ext\strut
+\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+extension to be used for dest files.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Right aligned columns
+
+\begin{longtable}[]{@{}rr@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedleft\strut
+Option\strut
+\end{minipage} & \begin{minipage}[b]{0.17\columnwidth}\raggedleft\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedleft\strut
+data\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedleft\strut
+path to data files to supply the data that will be passed into
+templates.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedleft\strut
+engine\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedleft\strut
+engine to be used for processing templates. Handlebars is the
+default.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedleft\strut
+ext\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedleft\strut
+extension to be used for dest files.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Multiple options
+
+\begin{longtable}[]{@{}lcr@{}}
+\toprule
+Tables & Are & Cool\tabularnewline
+\midrule
+\endhead
+col 1 is & left-aligned & \$1600\tabularnewline
+col 2 is & centered & \$12\tabularnewline
+col 3 is & right-aligned & \$1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{Links}\label{links}
+
+\href{http://dev.nodeca.com}{link text}
+
+\href{http://nodeca.github.io/pica/demo/}{link with title}
+
+Autoconverted link \url{https://github.com/nodeca/pica} (enable linkify
+to see)
+
+\subsection{Images}\label{images}
+
+\includegraphics{https://octodex.github.com/images/minion.png}\\
+\includegraphics{https://octodex.github.com/images/stormtroopocat.jpg}
+
+Like links, Images also have a footnote style syntax
+
+\includegraphics{https://octodex.github.com/images/dojocat.jpg}
+
+With a reference later in the document defining the URL location:
+
+\subsection{Plugins}\label{plugins}
+
+The killer feature of \texttt{markdown-it} is very effective support
+of\\
+\href{https://www.npmjs.org/browse/keyword/markdown-it-plugin}{syntax
+plugins}.
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-emoji}{Emojies}}{Emojies}}\label{emojies}
+
+\begin{quote}
+Classic markup: 😉 :crush: 😢 :tear: 😆 😋
+
+Shortcuts (emoticons): :-) :-( 8-) ;)
+\end{quote}
+
+see
+\href{https://github.com/markdown-it/markdown-it-emoji\#change-output}{how
+to change output} with twemoji.
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-sub}{Subscript}
+/
+\href{https://github.com/markdown-it/markdown-it-sup}{Superscript}}{Subscript / Superscript}}\label{subscript-superscript}
+
+\begin{itemize}
+\tightlist
+\item
+  19\^{}th\^{}
+\item
+  H\textasciitilde{}2\textasciitilde{}O
+\end{itemize}
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-ins}{\textbackslash{}}}{\textbackslash{}}}\label{section}
+
+++Inserted text++
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-mark}{\textbackslash{}}}{\textbackslash{}}}\label{section-1}
+
+==Marked text==
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-footnote}{Footnotes}}{Footnotes}}\label{footnotes}
+
+Footnote 1 link{[}\^{}first{]}.
+
+Footnote 2 link{[}\^{}second{]}.
+
+Inline footnote\^{}{[}Text of inline footnote{]} definition.
+
+Duplicated footnote reference{[}\^{}second{]}.
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-deflist}{Definition
+lists}}{Definition lists}}\label{definition-lists}
+
+Term 1
+
+: Definition 1\\
+with lazy continuation.
+
+Term 2 with \emph{inline markup}
+
+: Definition 2
+
+\begin{verbatim}
+    { some code, part of Definition 2 }
+
+Third paragraph of definition 2.
+\end{verbatim}
+
+\emph{Compact style:}
+
+Term 1\\
+\textasciitilde{} Definition 1
+
+Term 2\\
+\textasciitilde{} Definition 2a\\
+\textasciitilde{} Definition 2b
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-abbr}{Abbreviations}}{Abbreviations}}\label{abbreviations}
+
+This is HTML abbreviation example.
+
+It converts ``HTML'', but keep intact partial entries like
+``xxxHTMLyyy'' and so on.
+
+*{[}HTML{]}: Hyper Text Markup Language
+
+\subsubsection{\texorpdfstring{\href{https://github.com/markdown-it/markdown-it-container}{Custom
+containers}}{Custom containers}}\label{custom-containers}
+
+::: warning\\
+\emph{here be dragons}\\
+:::
+
+\end{document}
